@@ -11,18 +11,19 @@
 
 .login-page {
   width: 100%;
-  min-height: 100vh;
-
+  height: 100vh;
+   
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 
   background: #ffecef;
 
   font-family: Arial, Helvetica, sans-serif;
   box-sizing: border-box;
 
-  padding: 20px;
+  padding: 0;
 }
 
 .login-page * {
@@ -36,7 +37,7 @@
 
 .login-card {
   width: 478px;
-  height: 720px;
+  height: 110vh;
 
   background: #ffffff;
 
