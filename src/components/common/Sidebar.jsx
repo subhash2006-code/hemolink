@@ -1,7 +1,8 @@
 import { NavLink } from "react-router-dom";
-import { Home, User, Clock, HeartHandshake, Settings, LogOut ,Droplet } from "lucide-react";
+import { Home,HouseHeart, User, Clock, HeartHandshake, Settings, LogOut ,Droplet } from "lucide-react";
 
 const items = [
+  { to: "/home", label: "Home", icon: HouseHeart },
   { to: "/dashboard", label: "Dashboard", icon: Home },
   { to: "/profile", label: "My Profile", icon: User },
   { to: "/history", label: "History", icon: Clock },
