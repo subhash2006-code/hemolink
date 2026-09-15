@@ -8,6 +8,9 @@ const urgencyStyles = {
   Moderate: "bg-info-soft text-info",
 };
 
+const bloodGroupClass = (group) =>
+  `blood-${group.toLowerCase().replace("+", "-positive").replace("-", "-negative")}`;
+
 export default function Requests() {
   const [group, setGroup] = useState("");
   const [urgency, setUrgency] = useState("");
@@ -62,9 +65,12 @@ export default function Requests() {
         {filtered.map((r) => {
           const cardStatus = requestStatus[r.id];
           return (
-            <article key={r.id} className="rounded-2xl border border-brand/15 bg-brand-tint p-5 shadow-card">
+            <article
+              key={r.id}
+              className={`blood-request-card ${bloodGroupClass(r.bloodGroup)} rounded-2xl p-5 shadow-card`}
+            >
               <div className="flex items-start gap-4">
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand text-sm font-bold text-brand-foreground">{r.bloodGroup}</span>
+                <span className="blood-request-badge flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border text-sm font-bold">{r.bloodGroup}</span>
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-2">
                     <h2 className="text-sm font-bold text-brand">Needed: {r.units} {r.units === 1 ? "Unit" : "Units"}</h2>
@@ -79,7 +85,7 @@ export default function Requests() {
                   </div>
                 </div>
               </div>
-              <button type="button" onClick={() => setSelected(r)} className="mt-4 w-full rounded-lg border border-brand bg-background px-4 py-2.5 text-sm font-semibold text-brand transition-colors hover:bg-brand-soft">
+              <button type="button" onClick={() => setSelected(r)} className={`blood-request-action mt-4 w-full rounded-lg bg-background px-4 py-2.5 text-sm font-semibold transition-colors`}>
                 {cardStatus === "accepted" ? "View Shared Details" : "View Request"}
               </button>
             </article>
@@ -93,7 +99,7 @@ export default function Requests() {
           <div className="absolute inset-0 bg-foreground/40" onClick={closeDialog} aria-hidden="true" />
           <div role="dialog" aria-modal="true" aria-label="Request details" className="relative max-h-[90vh] w-full max-w-md overflow-y-auto rounded-2xl border border-border bg-card p-6 shadow-card">
             <button type="button" aria-label="Close" onClick={closeDialog} className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-lg hover:bg-muted"><X className="h-5 w-5" /></button>
-            <span className="flex h-14 w-14 items-center justify-center rounded-xl bg-brand text-lg font-bold text-brand-foreground">{selected.bloodGroup}</span>
+            <span className={`blood-request-badge ${bloodGroupClass(selected.bloodGroup)} flex h-14 w-14 items-center justify-center rounded-xl border text-lg font-bold`}>{selected.bloodGroup}</span>
             <h2 className="mt-4 text-xl font-bold tracking-tight">Blood Request</h2>
             <p className="mt-1 text-sm text-muted-foreground">Requested for {selected.hospital}</p>
             <dl className="mt-4 space-y-2 text-sm">

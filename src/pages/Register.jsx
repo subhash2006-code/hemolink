@@ -88,26 +88,6 @@ export default function Register() {
           <Logo className="max-h-64 lg:max-h-72" />
         </div>
 
-        <h2 className="mt-10 text-4xl font-bold leading-tight tracking-tight lg:text-5xl">
-          Save Lives,
-          <br />
-          <span className="text-brand">Be a Hero</span>
-        </h2>
-
-        <div className="mt-8 space-y-5">
-          {highlights.map(({ icon: Icon, title, body }) => (
-            <div key={title} className="flex items-start gap-4">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-soft">
-                <Icon className="h-5 w-5 text-brand" />
-              </span>
-              <div>
-                <h3 className="text-base font-bold tracking-tight">{title}</h3>
-                <p className="mt-1 text-sm leading-5 text-muted-foreground">{body}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
       </aside>
 
 

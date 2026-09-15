@@ -6,16 +6,21 @@ const urgencyStyles = {
   Moderate: "bg-info-soft text-info",
 };
 
+const bloodGroupClass = (group) =>
+  `blood-${group.toLowerCase().replace("+", "-positive").replace("-", "-negative")}`;
+
 export default function EmergencyRequestCard({ request, showUrgency = false, onView }) {
+  const bloodClass = bloodGroupClass(request.bloodGroup);
+
   return (
-    <div className="flex items-center gap-4 rounded-xl border border-brand/15 bg-brand-tint p-4">
-      <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand text-sm font-bold text-brand-foreground">
+    <article className={`blood-request-card ${bloodClass} flex items-center gap-4 rounded-xl p-4 transition-shadow hover:shadow-sm`}>
+      <span className="blood-request-badge flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border text-sm font-extrabold">
         {request.bloodGroup}
       </span>
 
       <div className="min-w-0 flex-1">
         <div className="flex flex-wrap items-center gap-2">
-          <p className="text-sm font-bold text-brand">
+          <p className="text-sm font-bold text-foreground">
             Needed: {request.units} {request.units === 1 ? "Unit" : "Units"}
           </p>
           {showUrgency && (
@@ -36,10 +41,10 @@ export default function EmergencyRequestCard({ request, showUrgency = false, onV
       <button
         type="button"
         onClick={onView}
-        className="shrink-0 rounded-lg border border-brand bg-background px-4 py-2 text-sm font-semibold text-brand transition-colors hover:bg-brand-soft"
+        className="blood-request-action shrink-0 rounded-lg bg-background px-4 py-2 text-sm font-semibold transition-colors"
       >
         View
       </button>
-    </div>
+    </article>
   );
 }

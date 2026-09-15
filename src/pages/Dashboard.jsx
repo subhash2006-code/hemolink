@@ -7,6 +7,13 @@ import QuickActionCard from "@/components/dashboard/QuickActionCard";
 import { emergencyRequests } from "@/data/requests";
 import { getCurrentDonor } from "@/utils/auth";
 
+
+
+const bloodGroupClass = (group) =>
+  `blood-${group.toLowerCase().replace("+", "-positive").replace("-", "-negative")}`;
+
+const bloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
+
 export default function Dashboard() {
   const navigate = useNavigate();
   const [donor, setDonor] = useState(null);
@@ -18,14 +25,24 @@ export default function Dashboard() {
   return (
     <div className="space-y-6">
       <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-        <StatCard title="Blood Group" value={bloodGroup} icon={Droplet} accent="brand" valueClass="text-brand" />
+        <div className="rounded-2xl border border-border bg-card p-5 shadow-card">
+          <div className="flex items-center gap-4">
+            <span className={`blood-group-chip ${bloodGroupClass(bloodGroup)} flex h-12 w-12 items-center justify-center rounded-xl text-sm font-extrabold`}>
+              <Droplet className="h-5 w-5" fill="currentColor" />
+            </span>
+            <div>
+              <p className="text-sm font-semibold text-muted-foreground">Blood Group</p>
+              <p className="mt-1 text-3xl font-extrabold tracking-tight">{bloodGroup}</p>
+            </div>
+          </div>
+        </div>
         <StatCard title="Donations" value={total} subtitle="Total Donations" icon={Droplets} accent="info" valueClass="text-info" />
         <StatCard title="Status" value="Eligible" subtitle="You can donate blood" icon={ShieldCheck} accent="success" valueClass="text-success"
           action={<Info className="h-4 w-4 text-success" aria-hidden="true" />} />
       </div>
 
       <section className="rounded-2xl border border-border bg-card p-5 shadow-card sm:p-6">
-        <div className="flex items-center justify-between gap-3">
+        <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
             <h2 className="text-lg font-bold tracking-tight">Emergency Requests Near You</h2>
             <p className="mt-1 text-sm text-muted-foreground">Review nearby requests and choose how you can help.</p>
@@ -33,6 +50,17 @@ export default function Dashboard() {
           <Link to="/requests" className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-brand transition-opacity hover:opacity-75">
             View All <ArrowRight className="h-4 w-4" />
           </Link>
+        </div>
+        <div className="blood-group-legend mt-4" aria-label="Blood group color guide">
+          <span className="blood-group-legend-label">Blood groups:</span>
+          {bloodGroups.map((group) => (
+            <span
+              key={group}
+              className={`blood-group-chip ${bloodGroupClass(group)} rounded-full px-2.5 py-1 text-[11px] font-bold`}
+            >
+              {group}
+            </span>
+          ))}
         </div>
         <div className="mt-5 space-y-3">
           {emergencyRequests.slice(0, 3).map((r) => (

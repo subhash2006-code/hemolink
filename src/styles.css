@@ -214,3 +214,168 @@ button, a { -webkit-tap-highlight-color: transparent; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
 }
+
+
+/* -------------------------------------------------------------------------- */
+/* HemoLink dashboard accents                                                  */
+/* Keep dashboard-specific colors in this file so component JSX stays clean. */
+/* -------------------------------------------------------------------------- */
+
+:root {
+  --blood-a-positive: #2563eb;
+  --blood-a-negative: #0284c7;
+  --blood-b-positive: #7c3aed;
+  --blood-b-negative: #9333ea;
+  --blood-ab-positive: #0891b2;
+  --blood-ab-negative: #0f766e;
+  --blood-o-positive: #e11d48;
+  --blood-o-negative: #dc2626;
+
+  --blood-a-positive-soft: #eff6ff;
+  --blood-a-negative-soft: #f0f9ff;
+  --blood-b-positive-soft: #f5f3ff;
+  --blood-b-negative-soft: #faf5ff;
+  --blood-ab-positive-soft: #ecfeff;
+  --blood-ab-negative-soft: #f0fdfa;
+  --blood-o-positive-soft: #fff1f2;
+  --blood-o-negative-soft: #fef2f2;
+}
+
+.stat-card.compact-stat {
+  --card-accent: #ef2b2b;
+  --card-bg-start: #fff2f46b;
+  --card-bg-end: #ffe1e500;
+  --icon-bg: #ffd8df;
+
+  position: relative;
+  min-height: 270px;
+  padding: 28px 22px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid rgba(222, 56, 30, 0.766);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 70% 20%, rgba(255,255,255,.7), transparent 42%),
+    linear-gradient(145deg, var(--card-bg-start), var(--card-bg-end));
+  box-shadow: 0 12px 28px rgba(212, 82, 156, 0.16);
+  overflow: hidden;
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+
+.stat-card.compact-stat:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px rgba(212, 82, 156, 0.20);
+}
+
+.stat-card.compact-stat .stat-card-icon {
+  background: var(--icon-bg);
+  color: var(--card-accent);
+}
+
+.stat-card.compact-stat .stat-card-value {
+  color: var(--card-accent);
+}
+
+/* Blood-group request cards */
+.blood-request-card {
+  --blood: var(--blood-o-positive);
+  --blood-soft: var(--blood-o-positive-soft);
+  --blood-border: #fecdd3;
+
+  border: 1px solid color-mix(in srgb, var(--blood) 30%, white);
+  background:
+    radial-gradient(circle at 90% 0%, color-mix(in srgb, var(--blood-soft) 75%, white), transparent 48%),
+    linear-gradient(145deg, var(--blood-soft), #ffffff 82%);
+}
+
+.blood-request-card .blood-request-badge {
+  background: var(--blood);
+  color: #fff;
+  border-color: var(--blood);
+  box-shadow: 0 5px 12px color-mix(in srgb, var(--blood) 22%, transparent);
+}
+
+.blood-request-card .blood-request-action {
+  border-color: var(--blood);
+  color: var(--blood);
+}
+
+.blood-request-card .blood-request-action:hover {
+  background: var(--blood-soft);
+}
+
+.blood-request-card.blood-a-positive { --blood: var(--blood-a-positive); --blood-soft: var(--blood-a-positive-soft); }
+.blood-request-card.blood-a-negative { --blood: var(--blood-a-negative); --blood-soft: var(--blood-a-negative-soft); }
+.blood-request-card.blood-b-positive { --blood: var(--blood-b-positive); --blood-soft: var(--blood-b-positive-soft); }
+.blood-request-card.blood-b-negative { --blood: var(--blood-b-negative); --blood-soft: var(--blood-b-negative-soft); }
+.blood-request-card.blood-ab-positive { --blood: var(--blood-ab-positive); --blood-soft: var(--blood-ab-positive-soft); }
+.blood-request-card.blood-ab-negative { --blood: var(--blood-ab-negative); --blood-soft: var(--blood-ab-negative-soft); }
+.blood-request-card.blood-o-positive { --blood: var(--blood-o-positive); --blood-soft: var(--blood-o-positive-soft); }
+.blood-request-card.blood-o-negative { --blood: var(--blood-o-negative); --blood-soft: var(--blood-o-negative-soft); }
+
+.blood-group-chip {
+  border: 1px solid color-mix(in srgb, var(--blood) 28%, white);
+  background: var(--blood-soft);
+  color: var(--blood);
+}
+
+.blood-group-chip.blood-a-positive { --blood: var(--blood-a-positive); --blood-soft: var(--blood-a-positive-soft); }
+.blood-group-chip.blood-a-negative { --blood: var(--blood-a-negative); --blood-soft: var(--blood-a-negative-soft); }
+.blood-group-chip.blood-b-positive { --blood: var(--blood-b-positive); --blood-soft: var(--blood-b-positive-soft); }
+.blood-group-chip.blood-b-negative { --blood: var(--blood-b-negative); --blood-soft: var(--blood-b-negative-soft); }
+.blood-group-chip.blood-ab-positive { --blood: var(--blood-ab-positive); --blood-soft: var(--blood-ab-positive-soft); }
+.blood-group-chip.blood-ab-negative { --blood: var(--blood-ab-negative); --blood-soft: var(--blood-ab-negative-soft); }
+.blood-group-chip.blood-o-positive { --blood: var(--blood-o-positive); --blood-soft: var(--blood-o-positive-soft); }
+.blood-group-chip.blood-o-negative { --blood: var(--blood-o-negative); --blood-soft: var(--blood-o-negative-soft); }
+
+.blood-group-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.blood-group-legend-label {
+  margin-right: 2px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--muted-foreground);
+}
+
+@media (max-width: 640px) {
+  .stat-card.compact-stat {
+    min-height: 220px;
+    padding: 22px 18px 0;
+  }
+}
+
+.stat-card.stat-card-brand {
+  --card-accent: #ef2b2b;
+  --card-bg-start: #fff2f46b;
+  --card-bg-end: #ffe1e500;
+  --icon-bg: #ffd8df;
+}
+.stat-card.stat-card-info {
+  --card-accent: #2563eb;
+  --card-bg-start: #eff6ffb8;
+  --card-bg-end: #eff6ff00;
+  --icon-bg: #dbeafe;
+  border-color: rgba(37, 99, 235, .28);
+}
+.stat-card.stat-card-success {
+  --card-accent: #16835b;
+  --card-bg-start: #ecfdf5b8;
+  --card-bg-end: #ecfdf500;
+  --icon-bg: #d1fae5;
+  border-color: rgba(22, 131, 91, .28);
+}
+.stat-card.stat-card-info .stat-card-icon,
+.stat-card.stat-card-success .stat-card-icon {
+  background: var(--icon-bg);
+  color: var(--card-accent);
+}
+.stat-card.stat-card-info .stat-card-value,
+.stat-card.stat-card-success .stat-card-value {
+  color: var(--card-accent);
+}
