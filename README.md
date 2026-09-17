@@ -1,16 +1,27 @@
-# React + Vite
+# AuthPage (Signup) — Standalone
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the Signup page (`AuthPage.jsx` / `AuthPage.css`) pulled out of the
+main project so it can run on its own.
 
-Currently, two official plugins are available:
+## Run it
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
+npm install
+npm run dev
+```
 
-## React Compiler
+Then open the URL Vite prints (usually http://localhost:5173).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## What's included
+- `src/AuthPage.jsx` — the Signup component (exported as default `Signup`)
+- `src/AuthPage.css` — its styles
+- `src/assets/logo.png.jpeg` — logo used by the page
+- `src/main.jsx` — minimal entry point that renders `AuthPage` inside a
+  `BrowserRouter` (needed because the page uses `<Link>` to `/login`)
+- `index.html`, `vite.config.js`, `package.json` — Vite scaffolding
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Notes
+- The page itself has no submit handler wired up yet (the "Sign Up" element
+  is currently a `<Link to="/login">`, not a form submit) — that's carried
+  over unchanged from your original file.
+- Dependencies: `react`, `react-dom`, `react-router-dom`, `lucide-react`.
