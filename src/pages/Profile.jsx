@@ -78,7 +78,7 @@ export default function Profile() {
         )}
       </div>
 
-      <section className="rounded-2xl border border-border bg-card p-6 shadow-card">
+      <section>
         <div className="flex flex-wrap items-center gap-5">
           <span className="flex h-20 w-20 items-center justify-center rounded-full bg-brand-soft text-2xl font-bold text-brand">
             {getInitials(donor.fullName)}
@@ -89,7 +89,7 @@ export default function Profile() {
           </div>
         </div>
 
-        <div className="mt-6 grid gap-4 sm:grid-cols-3">
+        <div className="mt-6 grid gap-6 sm:grid-cols-3">
           <MiniStat icon={Droplet} label="Blood Group" value={donor.bloodGroup} tone="brand" />
           <MiniStat
             icon={Droplets}
@@ -101,7 +101,7 @@ export default function Profile() {
         </div>
       </section>
 
-      <section className="rounded-2xl border border-border bg-card p-6 shadow-card">
+      <section className="border-t border-border pt-8">
         <h2 className="text-lg font-bold tracking-tight">Donor Details</h2>
         <dl className="mt-5 grid gap-5 sm:grid-cols-2">
           {fields.map(({ label, key }) => (
@@ -139,7 +139,7 @@ function MiniStat({ icon: Icon, label, value, tone }) {
     success: "bg-success-soft text-success",
   };
   return (
-    <div className="flex items-center gap-3 rounded-xl border border-border p-4">
+    <div className="flex items-center gap-3">
       <span className={`flex h-11 w-11 items-center justify-center rounded-full ${tones[tone]}`}>
         <Icon className="h-5 w-5" />
       </span>

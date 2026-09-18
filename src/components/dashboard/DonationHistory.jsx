@@ -4,7 +4,7 @@ import StatusBadge from "../dashboard/StatusBadge";
 
 export default function DonationHistory({ items }) {
   return (
-    <section className="rounded-2xl border border-border bg-card p-5 shadow-card sm:p-6">
+    <section className="border-t border-border pt-8">
       <div className="flex items-center justify-between gap-3">
         <h2 className="text-lg font-bold tracking-tight">Recent Donation History</h2>
         <Link

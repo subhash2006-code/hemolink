@@ -1,42 +1,270 @@
 import { useState } from "react";
-
-function Toggle({ checked, onChange, label, description }) {
-  return (
-    <div className="flex items-center justify-between gap-6 border-b border-border py-4 last:border-0">
-      <div>
-        <p className="text-sm font-semibold">{label}</p>
-        <p className="mt-0.5 text-xs text-muted-foreground">{description}</p>
-      </div>
-      <button type="button" role="switch" aria-checked={checked} aria-label={label} onClick={() => onChange(!checked)}
-        className={`relative h-6 w-11 shrink-0 rounded-full transition-colors ${checked ? "bg-brand" : "bg-border"}`}>
-        <span className={`absolute top-0.5 h-5 w-5 rounded-full bg-card shadow transition-all ${checked ? "left-[1.375rem]" : "left-0.5"}`} />
-      </button>
-    </div>
-  );
-}
-
-function Section({ title, children }) {
-  return <section className="rounded-2xl border border-border bg-card p-6 shadow-card"><h2 className="text-lg font-bold tracking-tight">{title}</h2><div className="mt-3">{children}</div></section>;
-}
+import { Settings as SettingsIcon } from "lucide-react";
 
 export default function Settings() {
-  const [prefs, setPrefs] = useState({ notifications: true, showProfile: true });
-  const set = (key) => (value) => setPrefs((current) => ({ ...current, [key]: value }));
+  // Donor Availability toggle
+  const [donorAvailability, setDonorAvailability] = useState(true);
+
+  // Email Preferences toggle
+  const [emailPreferences, setEmailPreferences] = useState(true);
 
   return (
-    <div className="max-w-3xl space-y-6">
+    <div className="w-full max-w-4xl space-y-7">
+
+      {/* ================= PAGE HEADER ================= */}
+
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Settings</h1>
-        <p className="mt-1.5 text-sm text-muted-foreground">Manage only the preferences needed for your donor experience.</p>
+        <h1 className="text-3xl font-bold tracking-tight text-foreground">
+          Settings
+        </h1>
+
+        <p className="mt-1 text-sm text-muted-foreground">
+          Manage your donor preferences.
+        </p>
       </div>
-      <Section title="Notifications">
-        <Toggle label="Request notifications" description="Receive important updates about nearby and relevant blood requests."
-          checked={prefs.notifications} onChange={set("notifications")} />
-      </Section>
-      <Section title="Privacy">
-        <Toggle label="Profile visibility" description="Allow requesters to see the information needed to contact you after a request is accepted."
-          checked={prefs.showProfile} onChange={set("showProfile")} />
-      </Section>
+
+
+      {/* ================= DONOR AVAILABILITY ================= */}
+
+      <div className="w-full border-t border-border pt-7">
+        <div className="flex items-center justify-between gap-6">
+
+          {/* LEFT CONTENT */}
+
+          <div className="flex items-center gap-5">
+
+            {/* ICON */}
+
+            <div
+              className="
+                flex
+                h-14
+                w-14
+                shrink-0
+                items-center
+                justify-center
+                rounded-2xl
+                bg-red-50
+              "
+            >
+              <SettingsIcon
+                className="h-7 w-7 text-red-600"
+                strokeWidth={2}
+              />
+            </div>
+
+
+            {/* TEXT */}
+
+            <div>
+              <h2 className="text-lg font-bold text-foreground">
+                Donor Availability
+              </h2>
+
+              <p className="mt-1 text-sm text-muted-foreground">
+                Allow receivers to find you when they need your blood group.
+              </p>
+
+              <p
+                className={`
+                  mt-2
+                  text-xs
+                  font-semibold
+                  ${
+                    donorAvailability
+                      ? "text-red-600"
+                      : "text-gray-500"
+                  }
+                `}
+              >
+                {donorAvailability ? "You are available" : "You are unavailable"}
+              </p>
+            </div>
+
+          </div>
+
+
+          {/* TOGGLE */}
+
+          <button
+            type="button"
+            role="switch"
+            aria-checked={donorAvailability}
+            aria-label="Toggle donor availability"
+            onClick={() =>
+              setDonorAvailability((previous) => !previous)
+            }
+            className={`
+              relative
+              flex
+              h-8
+              w-14
+              shrink-0
+              items-center
+              rounded-full
+              p-1
+              transition-colors
+              duration-300
+              focus:outline-none
+              focus:ring-2
+              focus:ring-red-200
+              ${
+                donorAvailability
+                  ? "bg-red-600"
+                  : "bg-gray-300"
+              }
+            `}
+          >
+            <span
+              className={`
+                h-6
+                w-6
+                rounded-full
+                bg-white
+                shadow-md
+                transition-transform
+                duration-300
+                ${
+                  donorAvailability
+                    ? "translate-x-6"
+                    : "translate-x-0"
+                }
+              `}
+            />
+          </button>
+
+        </div>
+      </div>
+
+
+      {/* ================= EMAIL PREFERENCES ================= */}
+
+      <div className="w-full border-t border-border pt-7">
+        <div className="flex items-center justify-between gap-6">
+
+          {/* LEFT CONTENT */}
+
+          <div className="flex items-center gap-5">
+
+            {/* ICON */}
+
+            <div
+              className="
+                flex
+                h-14
+                w-14
+                shrink-0
+                items-center
+                justify-center
+                rounded-2xl
+                bg-red-50
+              "
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                className="h-7 w-7 text-red-600"
+              >
+                <rect
+                  width="20"
+                  height="16"
+                  x="2"
+                  y="4"
+                  rx="2"
+                />
+
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+              </svg>
+            </div>
+
+
+            {/* TEXT */}
+
+            <div>
+              <h2 className="text-lg font-bold text-foreground">
+                Email Preferences
+              </h2>
+
+              <p className="mt-1 text-sm text-muted-foreground">
+                Receive important updates and notifications through email.
+              </p>
+
+              <p
+                className={`
+                  mt-2
+                  text-xs
+                  font-semibold
+                  ${
+                    emailPreferences
+                      ? "text-red-600"
+                      : "text-gray-500"
+                  }
+                `}
+              >
+                {emailPreferences
+                  ? "Email updates enabled"
+                  : "Email updates disabled"}
+              </p>
+            </div>
+
+          </div>
+
+
+          {/* TOGGLE */}
+
+          <button
+            type="button"
+            role="switch"
+            aria-checked={emailPreferences}
+            aria-label="Toggle email preferences"
+            onClick={() =>
+              setEmailPreferences((previous) => !previous)
+            }
+            className={`
+              relative
+              flex
+              h-8
+              w-14
+              shrink-0
+              items-center
+              rounded-full
+              p-1
+              transition-colors
+              duration-300
+              focus:outline-none
+              focus:ring-2
+              focus:ring-red-200
+              ${
+                emailPreferences
+                  ? "bg-red-600"
+                  : "bg-gray-300"
+              }
+            `}
+          >
+            <span
+              className={`
+                h-6
+                w-6
+                rounded-full
+                bg-white
+                shadow-md
+                transition-transform
+                duration-300
+                ${
+                  emailPreferences
+                    ? "translate-x-6"
+                    : "translate-x-0"
+                }
+              `}
+            />
+          </button>
+
+        </div>
+      </div>
+
     </div>
   );
 }

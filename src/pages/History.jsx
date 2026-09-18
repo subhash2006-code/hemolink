@@ -30,7 +30,7 @@ export default function History() {
         </p>
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-3">
+      <div className="grid gap-8 sm:grid-cols-3">
         <Summary icon={Droplets} label="Total Donations" value={successful.length} tone="info" />
         <Summary
           icon={CalendarClock}
@@ -41,7 +41,7 @@ export default function History() {
         <Summary icon={MapPin} label="Locations" value={donationLocations.length} tone="camp" />
       </div>
 
-      <section className="rounded-2xl border border-border bg-card p-5 shadow-card sm:p-6">
+      <section className="border-t border-border pt-8">
         <h2 className="text-sm font-bold uppercase tracking-wide text-muted-foreground">Filters</h2>
         <div className="mt-4 grid gap-4 sm:grid-cols-3">
           <input
@@ -88,7 +88,7 @@ function Summary({ icon: Icon, label, value, tone }) {
     camp: "bg-camp-soft text-camp",
   };
   return (
-    <div className="flex items-center gap-4 rounded-2xl border border-border bg-card p-5 shadow-card">
+    <div className="flex items-center gap-4">
       <span className={`flex h-12 w-12 items-center justify-center rounded-full ${tones[tone]}`}>
         <Icon className="h-6 w-6" />
       </span>
